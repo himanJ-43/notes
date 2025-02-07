@@ -1,0 +1,8 @@
+<li id="note-{{ note.id }}">
+    {{ note.content }}
+    <button hx-get="/delete_note/{{ note.id }}"
+            hx-target="#note-{{ note.id }}" 
+            hx-swap="outerHTML">
+        🗑️
+    </button>
+</li>

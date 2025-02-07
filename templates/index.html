@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Notes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+</head>
+<body>
+    <h1>My Notes</h1>
+    <a href="/logout">Logout</a>
+    
+    <form method="POST" action="/add_note"
+          hx-post="/add_note"
+          hx-target="#notes-list"
+          hx-swap="beforeend"
+          hx-on::after-request="this.reset()">
+        <textarea name="note" placeholder="Write a note..." required></textarea>
+        <button type="submit">Add Note</button>
+    </form>
+
+    <ul id="notes-list">
+        {% for note in notes %}
+            {% include 'note.html' %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
