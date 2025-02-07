@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///notes.db"
@@ -96,4 +97,4 @@ def delete_note(note_id):
     return "", 200
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
